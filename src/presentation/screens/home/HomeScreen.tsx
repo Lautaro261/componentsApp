@@ -90,7 +90,7 @@ export const HomeScreen = () => {
               key={index}
               {...item}
               isFirst={index === 0}
-              isLast={index === menuItems.length - 1}
+              isLast={index === animationMenuItems.length - 1}
               />
             ))
           }
@@ -114,7 +114,7 @@ export const HomeScreen = () => {
               key={index}
               {...item}
               isFirst={index === 0}
-              isLast={index === menuItems.length - 1}
+              isLast={index === uiMenuItems.length - 1}
               />
             ))
           }
