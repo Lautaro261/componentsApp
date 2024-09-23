@@ -1,21 +1,27 @@
+/* eslint-disable react-native/no-inline-styles */
 import React from 'react';
-import { View, Text} from 'react-native';
+import { View} from 'react-native';
 import { globalStyles } from '../../../config/theme/globalTheme';
 import { ScrollView } from 'react-native-gesture-handler';
 import { Title } from '../../components/ui/Title';
+import { MenuItem } from '../../components/ui/MenuItem';
+
+const animationMenuItems = [
+    // 01-animationMenuItems
+    {
+      name: 'Animation 101',
+      icon: 'cube-outline',
+      component: 'Animation101Screen',
+    },
+    {
+      name: 'Animation 102',
+      icon: 'albums-outline',
+      component: 'Animation102Screen',
+    },
+];
+
 
 export const menuItems = [
-  // 01-animationMenuItems
-  {
-    name: 'Animation 101',
-    icon: 'cube-outline',
-    component: 'Animation101Screen',
-  },
-  {
-    name: 'Animation 102',
-    icon: 'albums-outline',
-    component: 'Animation102Screen',
-  },
 
 
   // 02-menuItems
@@ -50,22 +56,25 @@ export const menuItems = [
     component: 'ChangeThemeScreen',
   },
 
-  // 03- uiMenuItems
-  {
-    name: 'Switches',
-    icon: 'toggle-outline',
-    component: 'SwitchScreen',
-  },
-  {
-    name: 'Alerts',
-    icon: 'alert-circle-outline',
-    component: 'AlertScreen',
-  },
-  {
-    name: 'TextInputs',
-    icon: 'document-text-outline',
-    component: 'TextInputScreen',
-  },
+];
+
+const uiMenuItems = [
+    // 03- uiMenuItems
+    {
+      name: 'Switches',
+      icon: 'toggle-outline',
+      component: 'SwitchScreen',
+    },
+    {
+      name: 'Alerts',
+      icon: 'alert-circle-outline',
+      component: 'AlertScreen',
+    },
+    {
+      name: 'TextInputs',
+      icon: 'document-text-outline',
+      component: 'TextInputScreen',
+    },
 ];
 
 export const HomeScreen = () => {
@@ -76,10 +85,40 @@ export const HomeScreen = () => {
           <Title text="Opciones del menú"/>
 
           {
-            menuItems.map((item, index) => (
-              <Text key={index} >{item.name}</Text>
+            animationMenuItems.map((item, index) => (
+              <MenuItem
+              key={index}
+              {...item}
+              isFirst={index === 0}
+              isLast={index === menuItems.length - 1}
+              />
             ))
           }
+          <View style={{marginTop:30}}/>
+
+          {
+            menuItems.map((item, index) => (
+              <MenuItem
+              key={index}
+              {...item}
+              isFirst={index === 0}
+              isLast={index === menuItems.length - 1}
+              />
+            ))
+          }
+          <View style={{marginTop:30}}/>
+
+          {
+            uiMenuItems.map((item, index) => (
+              <MenuItem
+              key={index}
+              {...item}
+              isFirst={index === 0}
+              isLast={index === menuItems.length - 1}
+              />
+            ))
+          }
+          <View style={{marginTop:30}}/>
 
         </ScrollView>
       </View>
