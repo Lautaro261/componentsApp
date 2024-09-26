@@ -31,7 +31,7 @@ export const ModalScreen = () => {
                 <Button
                 text="Cerrar modal"
                 onPress={()=>setIsVisible(false)}
-                styles={styles.button}
+                style={styles.button}
                 />
 
             </View>
