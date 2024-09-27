@@ -1,13 +1,13 @@
 /* eslint-disable react/no-unstable-nested-components */
-import React from 'react';
+import React, { useContext } from 'react';
 import { CustomView } from '../../components/ui/CustomView';
 import { Title } from '../../components/ui/Title';
 import { Card } from '../../components/ui/Card';
 import { SectionList, StyleSheet, Text, useWindowDimensions } from 'react-native';
 import { SubTitle } from '../../components/ui/SubTitle';
-import { colors } from '../../../config/theme/globalTheme';
 import { Separator } from '../../components/ui/Separator';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
+import { ThemeContext } from '../../context/ThemeContext';
 
 interface Houses {
     title: string;
@@ -91,7 +91,7 @@ interface Houses {
   ];
 
 export const CustomSectionListScreen = () => {
-
+  const {colors} = useContext(ThemeContext);
     const {height} = useWindowDimensions();
     const {top} = useSafeAreaInsets();
 

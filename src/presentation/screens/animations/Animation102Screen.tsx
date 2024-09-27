@@ -1,38 +1,47 @@
-import React, { useRef } from 'react';
-import { View, StyleSheet, Animated, PanResponder} from 'react-native';
-import { colors } from '../../../config/theme/globalTheme';
+import React, {useContext, useRef} from 'react';
+import {StyleSheet, Animated, PanResponder} from 'react-native';
+import {ThemeContext} from '../../context/ThemeContext';
+import {CustomView} from '../../components/ui/CustomView';
 
 export const Animation102Screen = () => {
-    const pan = useRef(new Animated.ValueXY()).current;
+  const {colors} = useContext(ThemeContext);
+  const pan = useRef(new Animated.ValueXY()).current;
 
-    const panResponder = PanResponder.create({
-        onStartShouldSetPanResponder:()=> true,
-        onPanResponderMove: Animated.event([
-            null,
-            {
-                dx:pan.x,
-                dy:pan.y,
-            },
-        ],{
-            useNativeDriver:false, //FALSE MUY IMPORTANTE
-        }),
-        onPanResponderRelease: ()=>{
-            Animated.spring(
-                pan,
-                {toValue:{x:0, y:0}, useNativeDriver: false} //FALSE MUY IMPORTANTE
-            ).start();
+  const panResponder = PanResponder.create({
+    onStartShouldSetPanResponder: () => true,
+    onPanResponderMove: Animated.event(
+      [
+        null,
+        {
+          dx: pan.x,
+          dy: pan.y,
         },
-    });
-
-
+      ],
+      {
+        useNativeDriver: false, //FALSE MUY IMPORTANTE
+      },
+    ),
+    onPanResponderRelease: () => {
+      Animated.spring(
+        pan,
+        {toValue: {x: 0, y: 0}, useNativeDriver: false}, //FALSE MUY IMPORTANTE
+      ).start();
+    },
+  });
 
   return (
-    <View style={styles.container}>
-     <Animated.View
-     {...panResponder.panHandlers}
-     style={[pan.getLayout(), styles.box]}
-     />
-    </View>
+    <CustomView style={styles.container}>
+      <Animated.View
+        {...panResponder.panHandlers}
+        style={[
+          pan.getLayout(),
+          styles.box,
+          {
+            backgroundColor: colors.primary,
+          },
+        ]}
+      />
+    </CustomView>
   );
 };
 
@@ -42,10 +51,9 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
   },
-  box:{
-    backgroundColor: colors.primary,
-    width:80,
-    height:80,
-    borderRadius:4,
+  box: {
+    width: 80,
+    height: 80,
+    borderRadius: 4,
   },
 });

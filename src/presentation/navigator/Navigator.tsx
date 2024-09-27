@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { createStackNavigator } from '@react-navigation/stack';
 import { HomeScreen } from '../screens/home/HomeScreen';
 import { Animation101Screen } from '../screens/animations/Animation101Screen';
@@ -11,14 +11,22 @@ import { CustomSectionListScreen } from '../screens/ui/CustomSectionListScreen';
 import { ModalScreen } from '../screens/ui/ModalScreen';
 import { InfiniteScrollScreen } from '../screens/ui/InfiniteScrollScreen';
 import { SlidesScreen } from '../screens/ui/SlidesScreen';
+import { ChangeThemeScreen } from '../screens/theme/ChangeThemeScreen';
+import { ThemeContext } from '../context/ThemeContext';
 
 const Stack = createStackNavigator();
 
 export const Navigator = () => {
+
+  const {colors} = useContext(ThemeContext);
+
   return (
     <Stack.Navigator
     screenOptions={{
         headerShown: false,
+        cardStyle:{
+          backgroundColor: colors.background,
+        },
     }}
     >
       <Stack.Screen name="Home" component={HomeScreen} />
@@ -32,6 +40,7 @@ export const Navigator = () => {
       <Stack.Screen name="ModalScreen" component={ModalScreen}/>
       <Stack.Screen name="InfiniteScrollScreen" component={InfiniteScrollScreen} />
       <Stack.Screen name="SlidesScreen" component={SlidesScreen}/>
+      <Stack.Screen name="ChangeThemeScreen" component={ChangeThemeScreen}/>
     </Stack.Navigator>
   );
 };

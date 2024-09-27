@@ -1,6 +1,7 @@
-import React, { ReactNode } from 'react';
+import React, { ReactNode, useContext } from 'react';
 import { View, StyleProp, ViewStyle} from 'react-native';
 import { globalStyles } from '../../../config/theme/globalTheme';
+import { ThemeContext } from '../../context/ThemeContext';
 
 interface Props{
     style?: StyleProp<ViewStyle>;
@@ -9,10 +10,15 @@ interface Props{
   }
 
 export const CustomView = ({style,margin = false ,children}:Props) => {
+
+  const {colors} = useContext(ThemeContext);
+
+
   return (
     <View style={[
       globalStyles.mainContainer,
       margin ? globalStyles.globalMargin : null,
+      {backgroundColor: colors.background},
       style,
       ]}>
         {children}
